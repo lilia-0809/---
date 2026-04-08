@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Мусорный Квест</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="/static/style.css">
+    <link rel="icon" type="image/png" href="/static/quest_site.png">
+</head>
+<body class="bg-zinc-950 text-white min-h-screen">
+    <!-- НАВИГАЦИЯ -->
+    <nav class="bg-black border-b-4 border-[#4F632D] sticky top-0 z-50">
+        <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <img src="/static/quest_site.png" class="w-20 h-20 rounded-xl rotate-12" alt="Мусорный Квест">
+                <h1 class="text-xl font-bold tracking-widest bg-gradient-to-r from-[#4F632D] to-emerald-400 bg-clip-text text-transparent">Мусорный Квест</h1>
+            </div>
+            <div class="flex items-center gap-8 text-sm">
+                <a href="#" onclick="showSection('home')" class="flex items-center gap-2 hover:text-[#4F632D] transition-colors">
+                    <i class="fas fa-home"></i> ГЛАВНАЯ
+                </a>
+                <a href="#" onclick="showSection('challenges')" class="flex items-center gap-2 hover:text-[#4F632D] transition-colors">
+                    <i class="fas fa-trophy"></i> ЧЕЛЛЕНДЖИ
+                </a>
+                <a href="#" onclick="showSection('game')" class="flex items-center gap-2 hover:text-[#4F632D] transition-colors">
+                    <i class="fas fa-gamepad"></i> ИГРА
+                </a>
+                <a href="#" onclick="showSection('dice')" class="flex items-center gap-2 hover:text-[#4F632D] transition-colors">
+                    <i class="fas fa-dice"></i> КУБИК
+                </a>
+                
+                <div class="flex items-center gap-2 bg-zinc-900 px-4 py-2 rounded-2xl border border-[#4F632D]">
+                    <i class="fas fa-fire streak-fire text-orange-500"></i>
+                    <span id="streak-count" class="font-bold text-[#4F632D]">0</span>
+                    <span class="text-xs">ДНЕЙ</span>
+                    <button onclick="claimDailyStreak()" 
+                            class="ml-3 bg-[#4F632D] hover:bg-white hover:text-black text-black text-xs px-4 py-1 rounded-xl font-bold transition-all">
+                        +1 ДЕНЬ
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="max-w-6xl mx-auto px-6 py-8">
+        
+        <!-- СЕКЦИЯ HOME -->
+        <div id="home-section" class="section">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="bg-zinc-900 rounded-3xl p-8 border-4 border-[#4F632D]">
+                    <h2 class="text-2xl mb-6 flex items-center gap-4">
+                        <span class="text-[#4F632D]">🏆</span> ТВОЙ ПРОГРЕСС
+                    </h2>
+                    <div class="space-y-6">
+                        <div class="flex justify-between items-center">
+                            <div>Общий счёт</div>
+                            <div class="text-5xl font-bold text-[#4F632D]" id="total-score">1240</div>
+                        </div>
+                        <div class="h-2 bg-zinc-800 rounded-full overflow-hidden">
+                            <div class="h-full w-3/4 bg-[#4F632D]"></div>
+                        </div>
+                        
+                        <div class="grid grid-cols-3 gap-4 text-center">
+                            <div class="bg-black rounded-2xl p-4">
+                                <div class="text-xs text-zinc-400">СОБРАНО МУСОРА</div>
+                                <div class="text-xl font-bold text-[#4F632D]" id="trash-collected">87кг</div>
+                            </div>
+                            <div class="bg-black rounded-2xl p-4">
+                                <div class="text-xs text-zinc-400">АПСАЙКЛИНГ</div>
+                                <div class="text-xl font-bold text-[#4F632D]" id="upcycled">14</div>
+                            </div>
+                            <div class="bg-black rounded-2xl p-4">
+                                <div class="text-xs text-zinc-400">РАНГ</div>
+                                <div class="text-lg font-bold text-[#4F632D]" id="user-rank">ЭКО-НОВИЧОК</div>
+                                <div class="text-xs text-zinc-500 mt-1" id="rank-progress">0 / 500 XP</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-zinc-900 rounded-3xl p-8 border-4 border-[#4F632D] flex flex-col justify-between">
+                    <div>
+                        <h3 class="text-2xl mb-4">Последние достижения</h3>
+                        <div class="space-y-3">
+                            <div class="flex items-center gap-4 bg-black p-4 rounded-2xl">
+                                <div class="text-4xl">🔥</div>
+                                <div class="flex-1">
+                                    <div class="font-bold">Стрик 7 дней!</div>
+                                    <div class="text-xs text-zinc-400">Ежедневный сбор мусора</div>
+                                </div>
+                                <div class="text-[#4F632D] font-bold">+250</div>
+                            </div>
+                            <div class="flex items-center gap-4 bg-black p-4 rounded-2xl">
+                                <div class="text-4xl">🎨</div>
+                                <div class="flex-1">
+                                    <div class="font-bold">Мастер апсайклинга</div>
+                                    <div class="text-xs text-zinc-400">Ваза из пластиковых бутылок</div>
+                                </div>
+                                <div class="text-[#4F632D] font-bold">+180</div>
+                            </div>
+                        </div>
+                    </div>
+                    <a onclick="showSection('game')" 
+                       class="mt-auto block text-center bg-[#4F632D] text-black py-6 rounded-3xl font-bold text-xl hover:scale-105 transition-all">
+                        НАЧАТЬ ИГРУ СЕЙЧАС →
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- СЕКЦИЯ ЧЕЛЛЕНДЖИ -->
+        <div id="challenges-section" class="section hidden">
+            <h2 class="text-4xl mb-8 flex items-center gap-4"><span class="text-[#4F632D]">🏅</span> АКТИВНЫЕ ЧЕЛЛЕНДЖИ</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6" id="challenge-list">
+                <!-- Заполняется JS -->
+            </div>
+        </div>
+
+        <!-- СЕКЦИЯ ИГРА (60 секунд сортировка) -->
+        <div id="game-section" class="section hidden">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-4xl">СОРТИРОВКА ЗА 60 СЕКУНД</h2>
+                <div class="flex items-center gap-6">
+                    <div class="text-2xl font-bold">СЧЁТ: <span id="game-score" class="text-[#4F632D]">0</span></div>
+                    <div class="text-5xl font-mono text-[#4F632D] w-24 text-right" id="timer">60</div>
+                </div>
+            </div>
+            
+            <div class="flex gap-4 justify-center mb-8">
+                <!-- БИНЫ -->
+                <div onclick="selectBin(0)" id="bin-0" class="bin cursor-pointer w-28 h-28 bg-blue-600 rounded-3xl flex flex-col items-center justify-center text-5xl border-4 border-white">
+                    ♻️<br><span class="text-xs mt-2">ПЛАСТИК</span>
+                </div>
+                <div onclick="selectBin(1)" id="bin-1" class="bin cursor-pointer w-28 h-28 bg-yellow-600 rounded-3xl flex flex-col items-center justify-center text-5xl border-4 border-white">
+                    📄<br><span class="text-xs mt-2">БУМАГА</span>
+                </div>
+                <div onclick="selectBin(2)" id="bin-2" class="bin cursor-pointer w-28 h-28 bg-green-600 rounded-3xl flex flex-col items-center justify-center text-5xl border-4 border-white">
+                    🪵<br><span class="text-xs mt-2">ОРГАНИКА</span>
+                </div>
+                <div onclick="selectBin(3)" id="bin-3" class="bin cursor-pointer w-28 h-28 bg-red-600 rounded-3xl flex flex-col items-center justify-center text-5xl border-4 border-white">
+                    🛠️<br><span class="text-xs mt-2">МЕТАЛЛ</span>
+                </div>
+            </div>
+
+            <div id="drop-area" class="game-canvas mx-auto w-full max-w-4xl h-96 rounded-3xl relative overflow-hidden flex items-center justify-center">
+                <div class="text-center text-white/30 text-6xl absolute inset-0 flex items-center justify-center pointer-events-none" id="start-text">
+                    НАЖМИ СТАРТ<br>🗑️
+                </div>
+                
+                <div id="items-container" class="absolute inset-0"></div>
+            </div>
+            
+            <div class="flex justify-center mt-8 gap-4">
+                <button onclick="startGame()" 
+                        class="px-10 py-4 bg-[#4F632D] hover:bg-white hover:text-black text-2xl font-bold rounded-3xl text-black flex items-center gap-3">
+                    <i class="fas fa-play"></i> СТАРТ ЧЕЛЛЕНДЖА
+                </button>
+                <button onclick="endGame()" 
+                        class="px-10 py-4 bg-zinc-800 hover:bg-red-600 text-2xl font-bold rounded-3xl">
+                    ЗАВЕРШИТЬ
+                </button>
+            </div>
+            
+            <div class="text-center text-xs mt-6 text-zinc-400">
+                Перетаскивай мусор в правильный контейнер<br>
+                Правильная сортировка = +100 очков
+            </div>
+        </div>
+
+        <!-- СЕКЦИЯ КУБИК -->
+        <div id="dice-section" class="section hidden text-center">
+            <div class="max-w-md mx-auto">
+                <h2 class="text-5xl mb-10">🎲 ЕЖЕДНЕВНЫЙ КУБИК</h2>
+                <div onclick="rollDice()" id="dice-button"
+                     class="mx-auto w-64 h-64 bg-gradient-to-br from-[#4F632D] to-emerald-600 rounded-3xl flex items-center justify-center text-9xl shadow-2xl cursor-pointer hover:rotate-12 transition-transform">
+                    🎲
+                </div>
+                <div id="dice-result" class="mt-8 text-3xl min-h-[120px] font-bold"></div>
+                <button onclick="rollDice()" 
+                        class="mt-6 px-8 py-4 bg-white text-black rounded-3xl font-bold text-xl">
+                    БРОСИТЬ КУБИК
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ==================== ГЛОБАЛЬНЫЕ ПЕРЕМЕННЫЕ ====================
+        let currentStreak = 0
+        let userStats = { total_score: 0, trash_collected: 0, upcycled_count: 0, games_played: 0 }
+        let gameTimer
+        let gameTimeLeft = 60
+        let gameScore = 0
+        let currentItems = []
+        let selectedBinIndex = -1
+        let trashSortedInGame = 0
+        
+        const trashTypes = [
+            { emoji: '🥤', name: 'Пластиковая бутылка', type: 0 },
+            { emoji: '🛍️', name: 'Пакет', type: 0 },
+            { emoji: '📦', name: 'Картонная коробка', type: 1 },
+            { emoji: '📰', name: 'Газета', type: 1 },
+            { emoji: '🍎', name: 'Яблоко', type: 2 },
+            { emoji: '🍌', name: 'Банановая кожура', type: 2 },
+            { emoji: '🥫', name: 'Консервная банка', type: 3 },
+            { emoji: '🔩', name: 'Гвоздь', type: 3 },
+        ]
+        
+        // ==================== РАНГИ ====================
+        const ranks = [
+            { name: "🌱 ЭКО-НОВИЧОК", minScore: 0, color: "#8B9A6B" },
+            { name: "♻️ СОРТИРОВЩИК", minScore: 500, color: "#4F632D" },
+            { name: "🌿 ЭКО-АКТИВИСТ", minScore: 1500, color: "#2D5016" },
+            { name: "🌍 ЭКО-ВОИН", minScore: 3000, color: "#1E8F4C" },
+            { name: "🔥 ЭКО-ГЕРОЙ", minScore: 5000, color: "#22C55E" },
+            { name: "👑 ЭКО-ЛЕГЕНДА", minScore: 10000, color: "#16A34A" },
+            { name: "🌟 ПАСТУХ ЗЕМЛИ", minScore: 20000, color: "#15803D" }
+        ]
+
+        function getCurrentRank(score) {
+            for (let i = ranks.length - 1; i >= 0; i--) {
+                if (score >= ranks[i].minScore) {
+                    return { current: ranks[i], next: ranks[i + 1] || null }
+                }
+            }
+            return { current: ranks[0], next: ranks[1] }
+        }
+
+        function updateRankUI() {
+            const score = userStats.total_score
+            const { current, next } = getCurrentRank(score)
+            
+            const rankEl = document.getElementById('user-rank')
+            const progressEl = document.getElementById('rank-progress')
+            
+            rankEl.textContent = current.name
+            rankEl.style.color = current.color
+            
+            if (next) {
+                const progress = score - current.minScore
+                const needed = next.minScore - current.minScore
+                const percent = Math.min(100, Math.round((progress / needed) * 100))
+                progressEl.textContent = `${score} / ${next.minScore} XP (${percent}%)`
+            } else {
+                progressEl.textContent = `МАКСИМАЛЬНЫЙ РАНГ! 🎉`
+                progressEl.classList.add('text-[#4F632D]')
+            }
+        }
+
+        const challenges = [
+            { 
+                id: 1,
+                title: "🚬 Собери 10 окурков", 
+                desc: "Собери 10 окурков с улицы и выброси в мусорку",
+                reward: 300, 
+                progress: 70,
+                confirmType: "count",
+                countRequired: 10,
+                icon: "🚬"
+            },
+            { 
+                id: 2,
+                title: "♻️ Апсайклинг: органайзер", 
+                desc: "Сделай органайзер из пластиковых бутылок. Прикрепи фото результата!",
+                reward: 500, 
+                progress: 40,
+                confirmType: "photo",
+                icon: "♻️"
+            },
+            { 
+                id: 3,
+                title: "🗑️ Броски в корзину", 
+                desc: "Попади мусором в урну с 3-х метров 5 раз подряд",
+                reward: 250, 
+                progress: 100,
+                confirmType: "checkbox",
+                icon: "🗑️"
+            },
+            { 
+                id: 4,
+                title: "🌱 Посади дерево", 
+                desc: "Посади дерево или кустарник в парке или во дворе. Сфотографируй результат!",
+                reward: 800, 
+                progress: 0,
+                confirmType: "photo",
+                icon: "🌱"
+            },
+            { 
+                id: 5,
+                title: "🛍️ Откажись от пакета", 
+                desc: "В магазине используй свою сумку вместо пластикового пакета",
+                reward: 150, 
+                progress: 0,
+                confirmType: "checkbox",
+                icon: "🛍️"
+            },
+            { 
+                id: 6,
+                title: "📱 Сдай батарейки", 
+                desc: "Сдай 5 использованных батареек в пункт приема",
+                reward: 400, 
+                progress: 0,
+                confirmType: "count",
+                countRequired: 5,
+                icon: "📱"
+            },
+            { 
+                id: 7,
+                title: "🧹 Убери двор", 
+                desc: "Принеси 3 кг мусора с улицы или двора",
+                reward: 600, 
+                progress: 0,
+                confirmType: "text",
+                placeholder: "Опиши что собрал...",
+                icon: "🧹"
+            },
+            { 
+                id: 8,
+                title: "💧 Экономь воду", 
+                desc: "Сократи время душа до 5 минут сегодня",
+                reward: 200, 
+                progress: 0,
+                confirmType: "checkbox",
+                icon: "💧"
+            },
+            { 
+                id: 9,
+                title: "📚 Поделись знаниями", 
+                desc: "Расскажи 2 друзьям о сортировке мусора",
+                reward: 350, 
+                progress: 0,
+                confirmType: "text",
+                placeholder: "Кому рассказал?",
+                icon: "📚"
+            }
+        ]
+
+        // ==================== TAILWIND ====================
+        function initTailwind() {
+            tailwind.config = {
+                content: ["./**/*.{html,js}"],
+                theme: { extend: {} }
+            }
+        }
+
+        // ==================== СЕКЦИИ ====================
+        function showSection(section) {
+            document.querySelectorAll('.section').forEach(s => s.classList.add('hidden'))
+            const target = document.getElementById(section + '-section')
+            if (target) target.classList.remove('hidden')
+            
+            if (section === 'challenges') renderChallenges()
+        }
+
+        // ==================== СТРИК ====================
+        function updateStreakUI() {
+            document.getElementById('streak-count').textContent = currentStreak
+        }
+
+        async function claimDailyStreak() {
+            const response = await fetch('/api/streak', { method: 'POST' })
+            const data = await response.json()
+            
+            currentStreak = data.streak
+            updateStreakUI()
+            
+            // Обновляем общий счет с сервера
+            await fetchStats()
+            
+            alert(`🔥 Стрик увеличен! Теперь ${data.streak} дней подряд!`)
+        }
+
+        // ==================== ЧЕЛЛЕНДЖИ ====================
+        let challengeConfirmData = {}
+
+        function renderChallenges() {
+            const container = document.getElementById('challenge-list')
+            container.innerHTML = challenges.map((ch, i) => {
+                const isCompleted = ch.progress >= 100
+                const confirmSection = getConfirmSection(ch, i)
+                
+                return `
+                <div class="bg-zinc-900 border-4 border-[#4F632D] rounded-3xl p-6 hover:scale-105 transition-all ${isCompleted ? 'opacity-60' : ''}">
+                    <div class="flex justify-between mb-2">
+                        <div class="font-bold text-lg">${ch.title}</div>
+                        <div class="text-[#4F632D] font-bold">+${ch.reward}</div>
+                    </div>
+                    <div class="text-xs text-zinc-400 mb-4">${ch.desc}</div>
+                    <div class="h-3 bg-zinc-800 rounded-full mb-3">
+                        <div class="h-3 bg-[#4F632D] rounded-full transition-all" style="width: ${ch.progress}%"></div>
+                    </div>
+                    ${isCompleted ? 
+                        '<div class="text-center text-[#4F632D] font-bold py-2">✅ ВЫПОЛНЕНО</div>' : 
+                        confirmSection}
+                </div>
+            `}).join('')
+        }
+
+        function getConfirmSection(ch, i) {
+            if (ch.confirmType === 'checkbox') {
+                return `
+                    <label class="flex items-center gap-3 mb-3 cursor-pointer">
+                        <input type="checkbox" id="confirm-${i}" class="w-5 h-5 accent-[#4F632D]">
+                        <span class="text-sm text-zinc-300">Я выполнил это задание</span>
+                    </label>
+                    <button onclick="confirmAndComplete(${i})" 
+                            class="w-full py-3 text-black bg-[#4F632D] hover:bg-emerald-400 rounded-2xl font-bold text-sm transition-colors">
+                        ✅ ПОДТВЕРДИТЬ ВЫПОЛНЕНИЕ
+                    </button>`
+            } else if (ch.confirmType === 'count') {
+                return `
+                    <div class="mb-3">
+                        <label class="text-xs text-zinc-400">Сколько собрал: <span id="count-display-${i}">0</span>/${ch.countRequired}</label>
+                        <div class="flex gap-2 mt-1">
+                            <button onclick="adjustCount(${i}, -1)" class="px-3 py-1 bg-zinc-700 rounded-lg">-</button>
+                            <input type="number" id="count-${i}" value="0" min="0" max="${ch.countRequired * 2}" 
+                                   class="w-16 bg-zinc-800 text-center rounded-lg py-1" readonly>
+                            <button onclick="adjustCount(${i}, 1)" class="px-3 py-1 bg-zinc-700 rounded-lg">+</button>
+                        </div>
+                    </div>
+                    <button onclick="confirmCountAndComplete(${i}, ${ch.countRequired})" 
+                            class="w-full py-3 text-black bg-[#4F632D] hover:bg-emerald-400 rounded-2xl font-bold text-sm transition-colors">
+                        📊 ПОДТВЕРДИТЬ КОЛИЧЕСТВО
+                    </button>`
+            } else if (ch.confirmType === 'photo') {
+                return `
+                    <div class="mb-3">
+                        <label class="flex items-center justify-center w-full h-20 border-2 border-dashed border-[#4F632D] rounded-xl cursor-pointer hover:bg-zinc-800 transition-colors">
+                            <span id="photo-label-${i}" class="text-sm text-zinc-400">📷 Прикрепить фото</span>
+                            <input type="file" id="photo-${i}" accept="image/*" class="hidden" onchange="handlePhotoUpload(${i})">
+                        </label>
+                    </div>
+                    <button onclick="confirmPhotoAndComplete(${i})" id="btn-photo-${i}"
+                            class="w-full py-3 text-black bg-zinc-700 rounded-2xl font-bold text-sm cursor-not-allowed" disabled>
+                        📸 ПОДТВЕРДИТЬ (нужно фото)
+                    </button>`
+            } else if (ch.confirmType === 'text') {
+                return `
+                    <div class="mb-3">
+                        <input type="text" id="text-${i}" placeholder="${ch.placeholder}" 
+                               class="w-full bg-zinc-800 border border-zinc-700 rounded-xl px-3 py-2 text-sm focus:border-[#4F632D] focus:outline-none"
+                               oninput="validateText(${i})">
+                    </div>
+                    <button onclick="confirmTextAndComplete(${i})" id="btn-text-${i}"
+                            class="w-full py-3 text-black bg-[#4F632D] hover:bg-emerald-400 rounded-2xl font-bold text-sm transition-colors">
+                        📝 ПОДТВЕРДИТЬ
+                    </button>`
+            }
+            return ''
+        }
+
+        function adjustCount(i, delta) {
+            const input = document.getElementById(`count-${i}`)
+            const display = document.getElementById(`count-display-${i}`)
+            let val = parseInt(input.value) + delta
+            if (val < 0) val = 0
+            input.value = val
+            display.textContent = val
+        }
+
+        function handlePhotoUpload(i) {
+            const input = document.getElementById(`photo-${i}`)
+            const label = document.getElementById(`photo-label-${i}`)
+            const btn = document.getElementById(`btn-photo-${i}`)
+            
+            if (input.files && input.files[0]) {
+                label.textContent = `✅ ${input.files[0].name}`
+                label.classList.add('text-[#4F632D]')
+                btn.disabled = false
+                btn.classList.remove('bg-zinc-700', 'cursor-not-allowed')
+                btn.classList.add('bg-[#4F632D]', 'hover:bg-emerald-400')
+                btn.textContent = '📸 ПОДТВЕРДИТЬ С ФОТО'
+                challengeConfirmData[i] = { photo: input.files[0] }
+            }
+        }
+
+        function validateText(i) {
+            const input = document.getElementById(`text-${i}`)
+            const btn = document.getElementById(`btn-text-${i}`)
+            if (input.value.trim().length > 0) {
+                btn.classList.remove('opacity-50', 'cursor-not-allowed')
+            } else {
+                btn.classList.add('opacity-50', 'cursor-not-allowed')
+            }
+        }
+
+        async function confirmAndComplete(i) {
+            const checkbox = document.getElementById(`confirm-${i}`)
+            if (!checkbox.checked) {
+                alert('❌ Поставь галочку, что выполнил задание!')
+                return
+            }
+            await completeChallenge(i, 'checkbox')
+        }
+
+        async function confirmCountAndComplete(i, required) {
+            const count = parseInt(document.getElementById(`count-${i}`).value)
+            if (count < required) {
+                alert(`❌ Нужно собрать минимум ${required} штук! У тебя: ${count}`)
+                return
+            }
+            await completeChallenge(i, 'count', { count })
+        }
+
+        async function confirmPhotoAndComplete(i) {
+            if (!challengeConfirmData[i]?.photo) {
+                alert('❌ Загрузи фото для подтверждения!')
+                return
+            }
+            await completeChallenge(i, 'photo')
+        }
+
+        async function confirmTextAndComplete(i) {
+            const text = document.getElementById(`text-${i}`).value.trim()
+            if (text.length < 3) {
+                alert('❌ Опиши подробнее (минимум 3 символа)!')
+                return
+            }
+            await completeChallenge(i, 'text', { text })
+        }
+
+        async function completeChallenge(i, confirmType, data = {}) {
+            challenges[i].progress = 100
+            
+            const response = await fetch('/api/upcycle', { method: 'POST' })
+            const serverData = await response.json()
+            
+            userStats = serverData
+            updateStatsUI()
+            renderChallenges()
+            
+            const reward = challenges[i].reward
+            alert(`🎉 Квест выполнен! +${reward} очков\nТип подтверждения: ${confirmType}`)
+        }
+
+        // ==================== КУБИК ====================
+        async function rollDice() {
+            const dice = document.getElementById('dice-button')
+            dice.style.transform = 'rotate(720deg)'
+            
+            setTimeout(async () => {
+                // Симуляция Flask /api/dice
+                const response = await fetch('/api/dice')
+                const data = await response.json()
+                
+                document.getElementById('dice-result').innerHTML = `
+                    <div class="text-[#4F632D] text-2xl mb-2">ЗАДАНИЕ ДНЯ:</div>
+                    <div class="text-3xl">${data.task}</div>
+                    <div class="text-xs mt-8 text-zinc-400">Выполни и получи +150 очков!</div>
+                `
+                dice.style.transform = 'rotate(0deg)'
+            }, 800)
+        }
+
+        // ==================== ИГРА: 60 СЕКУНД ====================
+        function startGame() {
+            document.getElementById('start-text').classList.add('hidden')
+            gameScore = 0
+            gameTimeLeft = 60
+            document.getElementById('game-score').textContent = '0'
+            document.getElementById('timer').textContent = '60'
+            
+            currentItems = []
+            document.getElementById('items-container').innerHTML = ''
+            
+            // Запуск таймера
+            clearInterval(gameTimer)
+            gameTimer = setInterval(() => {
+                gameTimeLeft--
+                document.getElementById('timer').textContent = gameTimeLeft
+                
+                if (gameTimeLeft <= 0) {
+                    endGame(true)
+                }
+                
+                // Спавн нового мусора каждые 700мс
+                if (Math.random() > 0.4) spawnTrashItem()
+            }, 1000)
+            
+            // Спавн сразу
+            for (let i = 0; i < 5; i++) {
+                setTimeout(spawnTrashItem, i * 300)
+            }
+        }
+
+        function spawnTrashItem() {
+            if (gameTimeLeft <= 0) return
+            
+            const item = trashTypes[Math.floor(Math.random() * trashTypes.length)]
+            const id = 'trash-' + Date.now()
+            
+            const element = document.createElement('div')
+            element.className = `trash-item absolute text-7xl cursor-grab active:cursor-grabbing select-none`
+            element.style.left = Math.random() * 80 + 10 + '%'
+            element.style.top = '-80px'
+            element.draggable = true
+            element.dataset.type = item.type
+            element.dataset.id = id
+            element.innerHTML = item.emoji
+            
+            // Drag & Drop
+            element.addEventListener('dragstart', e => {
+                e.dataTransfer.setData('text/plain', id)
+                element.style.opacity = '0.4'
+            })
+            
+            element.addEventListener('dragend', () => {
+                element.style.opacity = '1'
+            })
+            
+            document.getElementById('items-container').appendChild(element)
+            currentItems.push({ id, element, type: item.type })
+            
+            // Анимация падения - мусор долетает до дна игрового поля (h-96 = 384px)
+            let pos = -80
+            const fallInterval = setInterval(() => {
+                if (!element.isConnected) {
+                    clearInterval(fallInterval)
+                    return
+                }
+                pos += 5
+                element.style.top = pos + 'px'
+                
+                // Долетаем до самого низа игрового поля (~340px для h-96)
+                if (pos > 1000) {
+                    element.remove()
+                    clearInterval(fallInterval)
+                }
+            }, 16)
+        }
+
+        // Drop на бины
+        function selectBin(binIndex) {
+            selectedBinIndex = binIndex
+            const bins = document.querySelectorAll('.bin')
+            bins.forEach((b, i) => {
+                if (i === binIndex) {
+                    b.style.boxShadow = '0 0 30px #4F632D'
+                } else {
+                    b.style.boxShadow = ''
+                }
+            })
+            
+            // Если есть активный мусор — проверяем последний упавший
+            const container = document.getElementById('items-container')
+            const lastItem = Array.from(container.children).pop()
+            if (lastItem) {
+                handleDrop(lastItem.dataset.id, binIndex)
+            }
+        }
+
+        function handleDrop(itemId, binIndex) {
+            const item = currentItems.find(i => i.id === itemId)
+            if (!item) return
+            
+            const element = item.element
+            
+            if (parseInt(item.type) === binIndex) {
+                // Правильно!
+                gameScore += 100
+                trashSortedInGame += 1
+                element.style.transition = 'all 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55)'
+                element.style.transform = 'scale(0.1) rotate(720deg)'
+                setTimeout(() => element.remove(), 400)
+            } else {
+                // Неправильно
+                element.style.transition = 'all 0.3s'
+                element.style.transform = 'translateY(30px)'
+                setTimeout(() => {
+                    element.style.transform = ''
+                }, 300)
+                gameScore = Math.max(0, gameScore - 30)
+            }
+            
+            document.getElementById('game-score').textContent = gameScore
+            currentItems = currentItems.filter(i => i.id !== itemId)
+        }
+
+        // Drag & Drop на контейнер
+        function enableDropOnBins() {
+            const dropArea = document.getElementById('drop-area')
+            dropArea.addEventListener('dragover', e => e.preventDefault())
+            
+            // Можно дропать прямо в зону, но лучше через бины
+            const bins = document.querySelectorAll('.bin')
+            bins.forEach((bin, index) => {
+                bin.addEventListener('dragover', e => e.preventDefault())
+                bin.addEventListener('drop', e => {
+                    e.preventDefault()
+                    const itemId = e.dataTransfer.getData('text/plain')
+                    handleDrop(itemId, index)
+                })
+            })
+        }
+
+        async function endGame(auto = false) {
+            clearInterval(gameTimer)
+            const finalScore = gameScore
+            const trashSorted = trashSortedInGame
+            document.getElementById('items-container').innerHTML = ''
+            
+            // Отправляем результаты на сервер
+            const response = await fetch('/api/game/end', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ score: finalScore, trash_sorted: trashSorted })
+            })
+            const data = await response.json()
+            
+            // Обновляем локальную статистику
+            userStats = data
+            updateStatsUI()
+            
+            if (auto) {
+                alert(`⏰ Время вышло!\nТвой результат: ${finalScore} очков\n+${finalScore} в общий рейтинг!`)
+            } else {
+                alert(`🏁 Игра завершена!\nТвой результат: ${finalScore} очков\nВсего очков: ${data.total_score}`)
+            }
+            
+            document.getElementById('start-text').classList.remove('hidden')
+            trashSortedInGame = 0
+        }
+
+        async function fetchStats() {
+            const response = await fetch('/api/stats')
+            const data = await response.json()
+            
+            userStats = data
+            updateStatsUI()
+        }
+
+        function updateStatsUI() {
+            document.getElementById('total-score').textContent = userStats.total_score
+            document.getElementById('trash-collected').textContent = userStats.trash_collected + 'кг'
+            document.getElementById('upcycled').textContent = userStats.upcycled_count
+            updateRankUI()
+        }
+
+        // ==================== FLASK API СИМУЛЯЦИЯ (в реальном проекте — настоящие эндпоинты) ====================
+        // Эти fetch'и работают с Python Flask ниже
+        async function fetchStreak() {
+            const res = await fetch('/api/streak')
+            const data = await res.json()
+            currentStreak = data.streak
+            updateStreakUI()
+        }
+
+        // ==================== ЗАПУСК ====================
+        window.onload = async function() {
+            initTailwind()
+            enableDropOnBins()
+            
+            // Загружаем данные с сервера
+            await fetchStreak()
+            await fetchStats()
+            
+            console.log('%c🚀 Мусорный Квест запущен! Полный MVP готов.', 'color:#4F632D; font-size:18px')
+            
+            showSection('home')
+        }
+    </script>
+</body>
+</html>
