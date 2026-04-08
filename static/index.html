@@ -33,7 +33,7 @@
                 
                 <div class="flex items-center gap-2 bg-zinc-900 px-4 py-2 rounded-2xl border border-[#4F632D]">
                     <i class="fas fa-fire streak-fire text-orange-500"></i>
-                    <span id="streak-count" class="font-bold text-[#4F632D]">0</span>
+                    <span id="streak-count" class="font-bold bg-gradient-to-r from-[#4F632D] to-emerald-400 bg-clip-text text-transparent">0</span>
                     <span class="text-xs">ДНЕЙ</span>
                     <button onclick="claimDailyStreak()" 
                             class="ml-3 bg-[#4F632D] hover:bg-white hover:text-black text-black text-xs px-4 py-1 rounded-xl font-bold transition-all">
@@ -51,12 +51,12 @@
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <div class="bg-zinc-900 rounded-3xl p-8 border-4 border-[#4F632D]">
                     <h2 class="text-2xl mb-6 flex items-center gap-4">
-                        <span class="text-[#4F632D]">🏆</span> ТВОЙ ПРОГРЕСС
+                        <span class="text-emerald-400">🏆</span> <span class="bg-gradient-to-r from-[#4F632D] to-emerald-400 bg-clip-text text-transparent">ТВОЙ ПРОГРЕСС</span>
                     </h2>
                     <div class="space-y-6">
                         <div class="flex justify-between items-center">
                             <div>Общий счёт</div>
-                            <div class="text-5xl font-bold text-[#4F632D]" id="total-score">1240</div>
+                            <div class="text-5xl font-bold bg-gradient-to-r from-[#4F632D] to-emerald-400 bg-clip-text text-transparent" id="total-score">1240</div>
                         </div>
                         <div class="h-2 bg-zinc-800 rounded-full overflow-hidden">
                             <div class="h-full w-3/4 bg-[#4F632D]"></div>
@@ -65,15 +65,15 @@
                         <div class="grid grid-cols-3 gap-4 text-center">
                             <div class="bg-black rounded-2xl p-4">
                                 <div class="text-xs text-zinc-400">СОБРАНО МУСОРА</div>
-                                <div class="text-xl font-bold text-[#4F632D]" id="trash-collected">87кг</div>
+                                <div class="text-xl font-bold bg-gradient-to-r from-[#4F632D] to-emerald-400 bg-clip-text text-transparent" id="trash-collected">87кг</div>
                             </div>
                             <div class="bg-black rounded-2xl p-4">
                                 <div class="text-xs text-zinc-400">АПСАЙКЛИНГ</div>
-                                <div class="text-xl font-bold text-[#4F632D]" id="upcycled">14</div>
+                                <div class="text-xl font-bold bg-gradient-to-r from-[#4F632D] to-emerald-400 bg-clip-text text-transparent" id="upcycled">14</div>
                             </div>
                             <div class="bg-black rounded-2xl p-4">
                                 <div class="text-xs text-zinc-400">РАНГ</div>
-                                <div class="text-lg font-bold text-[#4F632D]" id="user-rank">ЭКО-НОВИЧОК</div>
+                                <div class="text-lg font-bold bg-gradient-to-r from-[#4F632D] to-emerald-400 bg-clip-text text-transparent" id="user-rank">ЭКО-НОВИЧОК</div>
                                 <div class="text-xs text-zinc-500 mt-1" id="rank-progress">0 / 500 XP</div>
                             </div>
                         </div>
@@ -82,7 +82,7 @@
                 
                 <div class="bg-zinc-900 rounded-3xl p-8 border-4 border-[#4F632D] flex flex-col justify-between">
                     <div>
-                        <h3 class="text-2xl mb-4">Последние достижения</h3>
+                        <h3 class="text-2xl mb-4 bg-gradient-to-r from-[#4F632D] to-emerald-400 bg-clip-text text-transparent">Последние достижения</h3>
                         <div class="space-y-3">
                             <div class="flex items-center gap-4 bg-black p-4 rounded-2xl">
                                 <div class="text-4xl">🔥</div>
@@ -90,7 +90,7 @@
                                     <div class="font-bold">Стрик 7 дней!</div>
                                     <div class="text-xs text-zinc-400">Ежедневный сбор мусора</div>
                                 </div>
-                                <div class="text-[#4F632D] font-bold">+250</div>
+                                <div class="font-bold bg-gradient-to-r from-[#4F632D] to-emerald-400 bg-clip-text text-transparent">+250</div>
                             </div>
                             <div class="flex items-center gap-4 bg-black p-4 rounded-2xl">
                                 <div class="text-4xl">🎨</div>
@@ -98,7 +98,7 @@
                                     <div class="font-bold">Мастер апсайклинга</div>
                                     <div class="text-xs text-zinc-400">Ваза из пластиковых бутылок</div>
                                 </div>
-                                <div class="text-[#4F632D] font-bold">+180</div>
+                                <div class="font-bold bg-gradient-to-r from-[#4F632D] to-emerald-400 bg-clip-text text-transparent">+180</div>
                             </div>
                         </div>
                     </div>
@@ -112,7 +112,7 @@
 
         <!-- СЕКЦИЯ ЧЕЛЛЕНДЖИ -->
         <div id="challenges-section" class="section hidden">
-            <h2 class="text-4xl mb-8 flex items-center gap-4"><span class="text-[#4F632D]">🏅</span> АКТИВНЫЕ ЧЕЛЛЕНДЖИ</h2>
+            <h2 class="text-4xl mb-8 flex items-center gap-4"><span class="text-emerald-400">🏅</span> <span class="bg-gradient-to-r from-[#4F632D] to-emerald-400 bg-clip-text text-transparent">АКТИВНЫЕ ЧЕЛЛЕНДЖИ</span></h2>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6" id="challenge-list">
                 <!-- Заполняется JS -->
             </div>
@@ -121,10 +121,10 @@
         <!-- СЕКЦИЯ ИГРА (60 секунд сортировка) -->
         <div id="game-section" class="section hidden">
             <div class="flex justify-between items-center mb-6">
-                <h2 class="text-4xl">СОРТИРОВКА ЗА 60 СЕКУНД</h2>
+                <h2 class="text-4xl bg-gradient-to-r from-[#4F632D] to-emerald-400 bg-clip-text text-transparent">СОРТИРОВКА ЗА 60 СЕКУНД</h2>
                 <div class="flex items-center gap-6">
-                    <div class="text-2xl font-bold">СЧЁТ: <span id="game-score" class="text-[#4F632D]">0</span></div>
-                    <div class="text-5xl font-mono text-[#4F632D] w-24 text-right" id="timer">60</div>
+                    <div class="text-2xl font-bold">СЧЁТ: <span id="game-score" class="bg-gradient-to-r from-[#4F632D] to-emerald-400 bg-clip-text text-transparent">0</span></div>
+                    <div class="text-5xl font-mono bg-gradient-to-r from-[#4F632D] to-emerald-400 bg-clip-text text-transparent w-24 text-right" id="timer">60</div>
                 </div>
             </div>
             
@@ -172,20 +172,40 @@
         <!-- СЕКЦИЯ КУБИК -->
         <div id="dice-section" class="section hidden text-center">
             <div class="max-w-md mx-auto">
-                <h2 class="text-5xl mb-10">🎲 ЕЖЕДНЕВНЫЙ КУБИК</h2>
+                <h2 class="text-3xl mb-10 bg-gradient-to-r from-[#4F632D] to-emerald-400 bg-clip-text text-transparent"> ЕЖЕДНЕВНЫЙ КУБИК</h2>
                 <div onclick="rollDice()" id="dice-button"
                      class="mx-auto w-64 h-64 bg-gradient-to-br from-[#4F632D] to-emerald-600 rounded-3xl flex items-center justify-center text-9xl shadow-2xl cursor-pointer hover:rotate-12 transition-transform">
                     🎲
                 </div>
                 <div id="dice-result" class="mt-8 text-3xl min-h-[120px] font-bold"></div>
-                <button onclick="rollDice()" 
+                
+                <!-- ПОДТВЕРЖДЕНИЕ ВЫПОЛНЕНИЯ -->
+                <div id="dice-verify-section" class="hidden mt-6 bg-zinc-900 rounded-2xl p-4 border-2 border-[#4F632D]">
+                    <div class="text-sm text-zinc-400 mb-3">Подтверди выполнение задания:</div>
+                    <label class="flex items-center gap-3 mb-3 cursor-pointer">
+                        <input type="checkbox" id="dice-confirm-check" class="w-5 h-5 accent-[#4F632D]">
+                        <span class="text-sm text-zinc-300">Я выполнил это задание</span>
+                    </label>
+                    <div class="mb-3">
+                        <label class="flex items-center justify-center w-full h-16 border-2 border-dashed border-zinc-600 rounded-xl cursor-pointer hover:bg-zinc-800 transition-colors">
+                            <span id="dice-photo-label" class="text-sm text-zinc-400">📷 Прикрепить фото (опционально)</span>
+                            <input type="file" id="dice-photo" accept="image/*" class="hidden" onchange="handleDicePhoto()">
+                        </label>
+                    </div>
+                    <button onclick="completeDiceTask()" 
+                            class="w-full py-3 text-black bg-[#4F632D] hover:bg-emerald-400 rounded-2xl font-bold text-sm transition-colors">
+                        ✅ ПОДТВЕРДИТЬ И ПОЛУЧИТЬ +150 XP
+                    </button>
+                </div>
+                
+                <button onclick="rollDice()" id="dice-roll-btn"
                         class="mt-6 px-8 py-4 bg-white text-black rounded-3xl font-bold text-xl">
                     БРОСИТЬ КУБИК
                 </button>
             </div>
         </div>
-    </div>
 
+        <!-- ... -->
     <script>
         // ==================== ГЛОБАЛЬНЫЕ ПЕРЕМЕННЫЕ ====================
         let currentStreak = 0
@@ -236,7 +256,7 @@
             const progressEl = document.getElementById('rank-progress')
             
             rankEl.textContent = current.name
-            rankEl.style.color = current.color
+            rankEl.className = 'text-lg font-bold bg-gradient-to-r from-[#4F632D] to-emerald-400 bg-clip-text text-transparent'
             
             if (next) {
                 const progress = score - current.minScore
@@ -245,7 +265,7 @@
                 progressEl.textContent = `${score} / ${next.minScore} XP (${percent}%)`
             } else {
                 progressEl.textContent = `МАКСИМАЛЬНЫЙ РАНГ! 🎉`
-                progressEl.classList.add('text-[#4F632D]')
+                progressEl.className = 'text-xs mt-1 bg-gradient-to-r from-[#4F632D] to-emerald-400 bg-clip-text text-transparent'
             }
         }
 
@@ -385,14 +405,14 @@
                 <div class="bg-zinc-900 border-4 border-[#4F632D] rounded-3xl p-6 hover:scale-105 transition-all ${isCompleted ? 'opacity-60' : ''}">
                     <div class="flex justify-between mb-2">
                         <div class="font-bold text-lg">${ch.title}</div>
-                        <div class="text-[#4F632D] font-bold">+${ch.reward}</div>
+                        <div class="font-bold bg-gradient-to-r from-[#4F632D] to-emerald-400 bg-clip-text text-transparent">+${ch.reward}</div>
                     </div>
                     <div class="text-xs text-zinc-400 mb-4">${ch.desc}</div>
                     <div class="h-3 bg-zinc-800 rounded-full mb-3">
-                        <div class="h-3 bg-[#4F632D] rounded-full transition-all" style="width: ${ch.progress}%"></div>
+                        <div class="h-3 bg-gradient-to-r from-[#4F632D] to-emerald-400 rounded-full transition-all" style="width: ${ch.progress}%"></div>
                     </div>
                     ${isCompleted ? 
-                        '<div class="text-center text-[#4F632D] font-bold py-2">✅ ВЫПОЛНЕНО</div>' : 
+                        '<div class="text-center font-bold py-2 bg-gradient-to-r from-[#4F632D] to-emerald-400 bg-clip-text text-transparent">✅ ВЫПОЛНЕНО</div>' : 
                         confirmSection}
                 </div>
             `}).join('')
@@ -540,18 +560,67 @@
             const dice = document.getElementById('dice-button')
             dice.style.transform = 'rotate(720deg)'
             
+            document.getElementById('dice-verify-section').classList.add('hidden')
+            document.getElementById('dice-roll-btn').textContent = 'ПЕРЕБРОСИТЬ'
+            
             setTimeout(async () => {
-                // Симуляция Flask /api/dice
                 const response = await fetch('/api/dice')
                 const data = await response.json()
+                currentDiceTask = data.task
                 
                 document.getElementById('dice-result').innerHTML = `
-                    <div class="text-[#4F632D] text-2xl mb-2">ЗАДАНИЕ ДНЯ:</div>
-                    <div class="text-3xl">${data.task}</div>
-                    <div class="text-xs mt-8 text-zinc-400">Выполни и получи +150 очков!</div>
+                    <div class="text-2xl mb-2 bg-gradient-to-r from-[#4F632D] to-emerald-400 bg-clip-text text-transparent"> ЗАДАНИЕ ДНЯ:</div>
+                    <div class="text-2xl px-4">${data.task}</div>
                 `
                 dice.style.transform = 'rotate(0deg)'
+                
+                document.getElementById('dice-verify-section').classList.remove('hidden')
+                resetDiceVerification()
             }, 800)
+        }
+
+        let currentDiceTask = null
+        let dicePhotoUploaded = false
+
+        function handleDicePhoto() {
+            const input = document.getElementById('dice-photo')
+            const label = document.getElementById('dice-photo-label')
+            if (input.files && input.files[0]) {
+                label.textContent = `✅ ${input.files[0].name}`
+                label.classList.add('text-[#4F632D]')
+                dicePhotoUploaded = true
+            }
+        }
+
+        function resetDiceVerification() {
+            document.getElementById('dice-confirm-check').checked = false
+            document.getElementById('dice-photo').value = ''
+            document.getElementById('dice-photo-label').textContent = '📷 Прикрепить фото (опционально)'
+            document.getElementById('dice-photo-label').classList.remove('text-[#4F632D]')
+            dicePhotoUploaded = false
+        }
+
+        async function completeDiceTask() {
+            const checkbox = document.getElementById('dice-confirm-check')
+            if (!checkbox.checked) {
+                alert('❌ Поставь галочку, что выполнил задание!')
+                return
+            }
+            const response = await fetch('/api/dice/complete', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ task: currentDiceTask, photo: dicePhotoUploaded })
+            })
+            const data = await response.json()
+            if (data.success) {
+                userStats.total_score += 150
+                updateStatsUI()
+                document.getElementById('dice-verify-section').classList.add('hidden')
+                document.getElementById('dice-result').innerHTML += `<div class="text-emerald-400 text-xl mt-4">✅ Выполнено! +150 XP</div>`
+                alert(' Задание кубика выполнено! +150 очков!')
+            } else {
+                alert('❌ ' + data.message)
+            }
         }
 
         // ==================== ИГРА: 60 СЕКУНД ====================
@@ -620,7 +689,7 @@
                     clearInterval(fallInterval)
                     return
                 }
-                pos += 5
+                pos += 2
                 element.style.top = pos + 'px'
                 
                 // Долетаем до самого низа игрового поля (~340px для h-96)
@@ -628,7 +697,7 @@
                     element.remove()
                     clearInterval(fallInterval)
                 }
-            }, 16)
+            }, 25)
         }
 
         // Drop на бины
