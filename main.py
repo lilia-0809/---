@@ -85,6 +85,26 @@ def api_dice():
     task = random.choice(DailyTask.query.all())
     return jsonify({'task': task.description})
 
+@app.route('/api/dice/complete', methods=['POST'])
+def api_dice_complete():
+    data = request.get_json()
+    task = data.get('task', '')
+    has_photo = data.get('photo', False)
+    
+    stats = UserStats.query.first()
+    bonus = 50 if has_photo else 0  # Бонус за фото
+    total_reward = 150 + bonus
+    
+    stats.total_score += total_reward
+    db.session.commit()
+    
+    return jsonify({
+        'success': True,
+        'total_score': stats.total_score,
+        'reward': total_reward,
+        'message': f'Задание выполнено! +{total_reward} очков' + (' (включая бонус за фото!)' if bonus else '')
+    })
+
 @app.route('/api/stats', methods=['GET'])
 def api_stats():
     stats = UserStats.query.first()
